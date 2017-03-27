@@ -1,3 +1,5 @@
+/*globals cordova, it, expect, describe, Promise, MSApp*/
+
 function runChecks(tests) {
     Object.keys(tests).forEach(function (key) {
         var expectedResult = tests[key];
@@ -106,7 +108,7 @@ exports.defineAutoTests = function () {
         };
         runChecks(tests);
     });
-}
+};
 
 exports.defineManualTests = function (contentEl, createActionButton) {
     var actionsDiv = [
@@ -132,4 +134,4 @@ exports.defineManualTests = function (contentEl, createActionButton) {
                 alert("Error: " + err.message);
             });
     }, "simple");
-}
+};

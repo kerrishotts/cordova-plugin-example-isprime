@@ -35,12 +35,14 @@
   "author": "Kerri Shotts",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint **/*.js",
     "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin .",
     "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin .",
     "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin .",
     "test:windows": "cordova-paramedic --cleanUpAfterRun --verbose --platform windows --plugin ."
   },
   "devDependencies": {
-    "cordova-paramedic": "^0.5.0"
+    "cordova-paramedic": "^0.5.0",
+    "eslint": "^3.18.0"
   }
 }

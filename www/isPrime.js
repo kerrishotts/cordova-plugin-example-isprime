@@ -1,8 +1,7 @@
 /* global cordova:false */
-/* globals window */
+/* globals window, Promise */
 
-var exec = cordova.require('cordova/exec'),
-    utils = cordova.require('cordova/utils'),
+var exec = cordova.require("cordova/exec"),
     SERVICE = "IsPrime";
 
 module.exports = function isPrime(successFn, failureFn, candidate) {
