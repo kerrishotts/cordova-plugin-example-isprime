@@ -1,0 +1,48 @@
+{
+  "name": "cordova-plugin-isprime",
+  "description": "Checks if a number is prime, and if not, returns the corresponding factors. Used for PhoneGap Day EU 2017 'Creating Modern PhoneGap Plugins' workshop; not intended for production use (there are better ways to find primes!)",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kerrishotts/cordova-plugin-isprime",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kerrishotts/cordova-plugin-isprime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kerrishotts/cordova-plugin-isprime/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-isprime",
+    "platforms": [
+      "ios",
+      "android",
+      "windows"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova",
+    "phonegap",
+    "pgday",
+    "eu",
+    "2017",
+    "example",
+    "prime"
+  ],
+  "engines": {
+    "cordova": ">=6.0.0"
+  },
+  "author": "Kerri Shotts",
+  "license": "MIT",
+  "scripts": {
+    "test": "jasmine-node --color spec",
+    "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin .",
+    "test:browser": "cordova-paramedic --externalServerUrl http://localhost:8008 --cleanUpAfterRun --verbose --platform browser --plugin .",
+    "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin .",
+    "test:windows": "cordova-paramedic --cleanUpAfterRun --verbose --platform windows --plugin ."
+  },
+  "devDependencies": {
+    "cordova-paramedic": "^0.5.0",
+    "jasmine-node": "1.14.5"
+  }
+}

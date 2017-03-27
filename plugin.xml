@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="cordova-plugin-isprime"
+      version="0.0.1">
+    <name>IsPrime</name>
+    <author>Kerri Shotts</author>
+    <description>
+        Checks if a number is prime, and if not, returns the corresponding factors.
+        Used for PhoneGap Day EU 2017 "Creating Modern PhoneGap Plugins" workshop;
+        not intended for production use (there are better ways to find primes!)
+    </description>
+    <license>MIT</license>
+    <repo>https://github.com/kerrishotts/cordova-plugin-isprime.git</repo>
+    <issue>https://github.com/kerrishotts/cordova-plugin-isprime/issues</issue>
+    <keywords>
+      prime, pgday, eu, 2017, example, cordova, phonegap, cordova:ecosystem, phonegap:ecosystem
+    </keywords>
+
+    <js-module src="www/isPrime.js" name="isPrime">
+        <clobbers target="cordova.plugins.kas.isPrime" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IsPrime" >
+                <param name="android-package" value="com.kerrishotts.example.isprime.IsPrime"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/IsPrime.java" target-dir="src/com/kerrishotts/example/isprime" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="IsPrime">
+                <param name="ios-package" value="CDVIsPrime"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/CDVIsPrime.m" />
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="IsPrime">
+                <param name="browser-package" value="IsPrime" />
+            </feature>
+        </config-file>
+
+        <js-module src="src/browser/IsPrimeProxy.js" name="IsPrimeProxy">
+            <runs />
+        </js-module>
+    </platform>
+
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
+            <runs />
+        </js-module>
+    </platform>
+</plugin>
