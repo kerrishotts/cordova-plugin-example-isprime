@@ -44,12 +44,6 @@
 
     <!-- browser -->
     <platform name="browser">
-        <config-file target="config.xml" parent="/*">
-            <feature name="IsPrime">
-                <param name="browser-package" value="IsPrime" />
-            </feature>
-        </config-file>
-
         <js-module src="src/browser/IsPrimeProxy.js" name="IsPrimeProxy">
             <runs />
         </js-module>
