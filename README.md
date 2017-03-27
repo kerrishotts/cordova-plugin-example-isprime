@@ -1,5 +1,4 @@
-
-# cordova-plugin-isprime
+# cordova-plugin-example-isprime
 
 Determines if a number is prime, and if not, returns the factors.
 
@@ -15,11 +14,11 @@ Supported on iOS, Android, Windows, and browser platforms.
 
 To install, use one of two methods:
 
-* `cordova plugin add --save cordova-plugin-isprime`
+* `cordova plugin add --save cordova-plugin-example-isprime`
 * Add the following to your `config.xml`:
 
     ```xml
-    <plugin name="cordova-plugin-isprime"/>
+    <plugin name="cordova-plugin-example-isprime"/>
     ```
 
     > **Note:** This will retrieve the latest version of the plugin should you later remove it (or use with PhoneGap Build). You may wish to pin to a specific version using the `spec` attribute.

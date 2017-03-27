@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
-           id="cordova-plugin-isprime"
+           id="cordova-plugin-example-isprime"
       version="0.0.1">
     <name>IsPrime</name>
     <author>Kerri Shotts</author>
