@@ -9,6 +9,7 @@ function isPrimeBatch(result, startAt, batchSize, endAt) {
             result.factors.push(i);
         }
     }
+    result.progress = ((i + 1) / endAt) * 100;
     return i + 1;
 }
 
@@ -16,12 +17,14 @@ function isPrime(successFn, failureFn, args) {
     var result = args[0],
         candidate = result.candidate,
         half = Math.floor(candidate / 2),
-        batchSize = 1000,
+        batchSize = 10000,
         cur = 2;
 
     setTimeout(function runBatch() {
         cur = isPrimeBatch(result, cur, batchSize, half);
         if (!cur || cur > half) {
+            result.complete = true;
+            result.progress = 100;
             result.isPrime = result.factors.length === 0;
             if (!result.isPrime) {
                 result.factors.push(candidate); // we can divide by ourselves
@@ -29,6 +32,7 @@ function isPrime(successFn, failureFn, args) {
             }
             successFn(result);
         } else {
+            successFn(result, {keepCallback: true});  // post progress
             setTimeout(runBatch, 0);
         }
     }, 0);

@@ -6,13 +6,15 @@ function runChecks(tests) {
         it("Checking " + key + (typeof expectedResult === "string" ? " has factors " + expectedResult : " is a prime"), function (done) {
             try {
                 cordova.plugins.kas.isPrime(function win(result) {
-                    if (typeof expectedResult === "string") {
-                        expect(result.isPrime).toBe(false);
-                        expect(result.factors.join(", ")).toBe(expectedResult);
-                    } else {
-                        expect(result.isPrime).toBe(expectedResult);
+                    if (result.complete) {
+                        if (typeof expectedResult === "string") {
+                            expect(result.isPrime).toBe(false);
+                            expect(result.factors.join(", ")).toBe(expectedResult);
+                        } else {
+                            expect(result.isPrime).toBe(expectedResult);
+                        }
+                        done();
                     }
-                    done();
                 }, function fail(err) {
                     expect("this should never happen").toBe("but it did:" + JSON.stringify(err));
                     done();
@@ -24,6 +26,38 @@ function runChecks(tests) {
         }, 120000);
     });
 }
+function runChecksAsPromises(tests, checkProgress) {
+    Object.keys(tests).forEach(function (key) {
+        var expectedResult = tests[key];
+        it("Checking " + key + (checkProgress ? " (with progress)" : "") +
+            (typeof expectedResult === "string" ? " has factors " +
+              expectedResult : " is a prime"), function (done) {
+            var candidate = Number(key),
+                progressCalled = false;
+            function progress() { progressCalled = true; }
+            try {
+                cordova.plugins.kas.isPrime(candidate, progress)
+                .then(function win(result) {
+                    expect(progressCalled).toBe(true);
+                    if (typeof expectedResult === "string") {
+                        expect(result.isPrime).toBe(false);
+                        expect(result.factors.join(", ")).toBe(expectedResult);
+                    } else {
+                        expect(result.isPrime).toBe(expectedResult);
+                    }
+                    done();
+                }).catch( function fail(err) {
+                    expect("this should never happen").toBe("but it did:" + JSON.stringify(err));
+                    done();
+                });
+            } catch (err) {
+                expect("this is embarrasing").toBe(err.message);
+                done();
+            }
+        }, 120000);
+    });
+}
+
 exports.defineAutoTests = function () {
     describe("IsPrime (cordova.plugins.kas.isPrime)", function () {
         it("should exist", function () {
@@ -99,6 +133,15 @@ exports.defineAutoTests = function () {
         runChecks(tests);
     });
 
+    describe("Promises and progress", function () {
+        var tests = {
+            1301081: true,
+            12354962: "1, 2, 6177481, 12354962"
+        };
+        runChecksAsPromises(tests, false);
+        runChecksAsPromises(tests, true);
+    });
+
     describe("Longer tests", function () {
         var tests = {
             1301081: true,
@@ -108,6 +151,7 @@ exports.defineAutoTests = function () {
         };
         runChecks(tests);
     });
+
 };
 
 exports.defineManualTests = function (contentEl, createActionButton) {

@@ -31,10 +31,15 @@ You can use one of two methods to check if a number is prime:
     ```javascript
     cordova.plugins.kas.isPrime(win, fail, 7);
     function win(result) {
-        if (result.isPrime) {
-            console.log(result.candidate + " is prime!");
+        if (result.complete) {
+            if (result.isPrime) {
+                console.log(result.candidate + " is prime!");
+            } else {
+                console.log(result.candidate + " has factors " + result.factors);
+            }
         } else {
-            console.log(result.candidate + " has factors " + result.factors);
+            // calculation ongoing; progress is 0 - 100
+            console.log(result.progress);
         }
     }
     function fail(err) {
@@ -55,15 +60,21 @@ You can use one of two methods to check if a number is prime:
         console.log("error: " + err);
     });
 
-The return result to the success callback is an object that looks like this:
+    > **Note:** If you need progress reports, pass a function as the second parameter; i.e., `cordova.plugins.kas.isPrime(7, progressFn)`
+
+Interim and completion results passed to the success callback look like this:
 
 ```typescript
 {
-    isPrime: Boolean,                   // indicates if the candidate is prime
     candidate: Number,                  // the requested candidate
+    complete: Boolean,                  // true if the calculation is complete
     factors: Array<Number>              // factors of the candidate if NOT prime
+    isPrime: Boolean,                   // indicates if the candidate is prime
+    progress: Number,                   // indicates progress of the calculation (0-100)
 }
 ```
+
+**Note:** do **not** count on intermediate progress reports being made; different platforms report at different intervals, and there may not be a report prior to the completion report.
 
 The following errors can be thrown (when using `Promises`, they are propagated to your `catch` handler):
 

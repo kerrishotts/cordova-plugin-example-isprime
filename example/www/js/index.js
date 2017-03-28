@@ -32,8 +32,22 @@ var app = {
 
         document.getElementById("checkCandidate").addEventListener("click", function() {
             var candidate = Number(document.getElementById("candidate").value);
-            cordova.plugins.kas.isPrime(candidate)
+            var progressEl = document.getElementById("checkCandidate");
+            progressEl.setAttribute("disabled", "disabled");
+
+            function progress(result) {
+                if (!result.complete) {
+                    setTimeout(function () {
+                        progressEl.setAttribute("value", "Checking (" + (Math.floor(result.progress * 100) / 100) + "%)");
+                    }, 0);
+                }
+            }
+
+            cordova.plugins.kas.isPrime(candidate, progress)
             .then(function (result) {
+                var progressEl = document.getElementById("checkCandidate");
+                progressEl.removeAttribute("disabled");
+                progressEl.setAttribute("value", "Is Prime?");
                 if (result.isPrime) {
                     alert("" + candidate + " is prime.");
                 } else {

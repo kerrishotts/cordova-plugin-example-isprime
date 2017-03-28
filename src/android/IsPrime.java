@@ -1,6 +1,9 @@
 
 package com.kerrishotts.example.isprime;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -41,8 +44,12 @@ public class IsPrime extends CordovaPlugin {
                     JSONArray factors = result.getJSONArray("factors");
                     long candidate = result.getLong("candidate");
                     long half = candidate / 2;
+                    long now = (new GregorianCalendar()).getTimeInMillis();
+                    long cur = now;
 
                     if (candidate == 2) {
+                        result.put("progress", 100);
+                        result.put("complete", true);
                         result.put("isPrime", true);
                     } else {
                         // we are divisible by ourselves
@@ -51,6 +58,16 @@ public class IsPrime extends CordovaPlugin {
                         // with sqrt(candidate), but since we want the factors, we have to
                         // go up to candidate/2.
                         for (long i = 2; i<=half; i++) {
+                            if (i % 1000 == 0) {
+                                result.put("progress", ((double)i / (double)half) * 100);
+                                cur = (new GregorianCalendar()).getTimeInMillis();
+                                if (cur - now > 1000) {
+                                    now = cur;
+                                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+                                    pluginResult.setKeepCallback(true);
+                                    callbackContext.sendPluginResult(pluginResult);
+                                }
+                            }
                             if ((candidate % i) == 0) {
                                 factors.put(i);
                             }
@@ -65,7 +82,10 @@ public class IsPrime extends CordovaPlugin {
                             factors.put(candidate);
                         }
                     }
-                    callbackContext.success(result);
+                    result.put("progress", 100);
+                    result.put("complete", true);
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+                    callbackContext.sendPluginResult(pluginResult);
                 } catch (JSONException e) {
                     callbackContext.error("JSON Exception; check that the JS API is passing the right result object");
                 }

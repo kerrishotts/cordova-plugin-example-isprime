@@ -4,18 +4,49 @@
 var exec = cordova.require("cordova/exec"),
     SERVICE = "IsPrime";
 
+function tick(fn, thisArg) {
+    return function() {
+        setTimeout(fn.apply(thisArg, arguments), 0);
+    };
+}
+
+/**
+ * Checks if a candidate is prime, and if not, returns the factors.
+ *
+ * Return result is of the form
+ *
+ * {
+ *     candidate: Number,               Candidate being checked
+ *     complete: Boolean,               If true, calculation is finished
+ *     factors: Array<Number>,          Array of factors
+ *     isPrime: Boolean,                If true, the candidate is prime
+ *     progress: Number                 Progress of calculation (1-100)
+ * }
+ *
+ * @param {function|Number} successFn           success callback, or candidate if using promises
+ * @param {function} [failureFn]                failure callback, or progress function if using promises
+ * @param {Number} [candidate]                  candidate number to check for primality
+ * @returns {void|Promise}                      returns a promise when using promises; otherwise void
+ */
 module.exports = function isPrime(successFn, failureFn, candidate) {
     // check callback types; if we have only one parameter
     // and it isn't a function, we assume the user wants to
     // use promises
-    if (typeof successFn === "number" && typeof failureFn === "undefined" &&
-        typeof candidate === "undefined") {
+    if (typeof successFn === "number" && typeof candidate === "undefined") {
         if (typeof Promise === "undefined") {
             throw new Error("Native promises aren't supported in this environment");
         }
+        var progressFn = failureFn;     // args are shifted in promise mode
         return new Promise(function (resolve, reject) {
             try {
-                isPrime(resolve, reject, successFn);    // successFn is the candidate number
+                isPrime(function(result) {
+                    if (typeof progressFn === "function") {
+                        progressFn(result);
+                    }
+                    if (result.complete) {
+                        resolve(result);
+                    }
+                }, reject, successFn);    // successFn is the candidate number
             } catch (err) {
                 reject(err);
             }
@@ -49,9 +80,12 @@ module.exports = function isPrime(successFn, failureFn, candidate) {
     var result = {
         isPrime: false,
         candidate: candidate,
-        factors: []
+        factors: [],
+        progress: 0,
+        complete: false
     };
 
     // pass our request over the bridge
-    exec(successFn, failureFn, SERVICE, "isPrime", [result]);
+    // tick is just in case someone tries to alert or otherwise block on iOS
+    exec(tick(successFn), tick(failureFn), SERVICE, "isPrime", [result]);
 };
