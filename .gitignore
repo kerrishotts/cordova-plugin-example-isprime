@@ -1,3 +1,6 @@
 .vscode/
 node_modules/
 npm-debug.log
+example/platforms/
+example/plugins/
+example/hooks
