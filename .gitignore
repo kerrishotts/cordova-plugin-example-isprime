@@ -4,3 +4,4 @@ npm-debug.log
 example/platforms/
 example/plugins/
 example/hooks
+example/build.json
