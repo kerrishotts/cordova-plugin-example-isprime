@@ -1,13 +1,12 @@
 sudo: false
 os:
+  - linux
   - osx
 node_js:
   - "4"
   - "6"
 jdk: oraclejdk1.8
-language:
-  - android
-  - objective-c
+language: android
 matrix:
   include:
     - os: osx
@@ -19,6 +18,7 @@ android:
     - sys-img-armeabi-v7a-android-24
     - extra
 script:
+  - nvm use 6.10.2
   - npm install -g cordova
   - npm install
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
