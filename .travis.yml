@@ -1,31 +1,29 @@
 sudo: false
 os:
-  - linux
   - osx
 node_js:
   - "4"
   - "6"
 jdk: oraclejdk1.8
+language:
+  - android
+  - objective-c
 matrix:
   include:
-    - os: linux
-      language: android
     - os: osx
       osx_image: xcode8.2
-      language: objective-c
 android:
   components:
     - build-tools-24.0.3
     - android-24
     - sys-img-armeabi-v7a-android-24
     - extra
-before_script:
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
 script:
   - npm install -g cordova
   - npm install
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
   - npm run test:android
