@@ -1,11 +1,12 @@
 sudo: false
 os:
-  - linux
   - osx
-jdk: oraclejdk1.8
+  - linux
 language: android
 matrix:
   include:
+    - os: linux
+      jdk: oraclejdk1.8
     - os: osx
       osx_image: xcode8.2
 android:
