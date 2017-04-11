@@ -146,8 +146,11 @@ exports.defineAutoTests = function () {
         var tests = {
             1301081: true,
             12354962: "1, 2, 6177481, 12354962",
+            /* these do pass, but they take a LONG!!!! time.
+               commenting out for travis and demoing.
             179402471: true,
             6801534321: "1, 3, 41, 123, 55297027, 165891081, 2267178107, 6801534321"
+            */
         };
         runChecks(tests);
     });
