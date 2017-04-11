@@ -2,13 +2,28 @@ sudo: false
 os:
   - linux
   - osx
-language:
-  - android
-  - objective-c
-osx_image: xcode8.3
 node_js:
   - "4"
   - "6"
+jdk: oraclejdk1.8
+matrix:
+  include:
+    - os: linux
+      language: android
+    - os: osx
+      osx_image: xcode8.2
+      language: objective-c
+android:
+  components:
+    - build-tools-24.0.3
+    - android-24
+    - sys-img-armeabi-v7a-android-24
+    - extra
+before_script:
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 script:
   - npm install -g cordova
   - npm install
