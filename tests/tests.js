@@ -23,7 +23,7 @@ function runChecks(tests) {
                 expect("this is embarrasing").toBe(err.message);
                 done();
             }
-        }, 120000);
+        }, 360000);
     });
 }
 function runChecksAsPromises(tests, checkProgress) {
@@ -54,7 +54,7 @@ function runChecksAsPromises(tests, checkProgress) {
                 expect("this is embarrasing").toBe(err.message);
                 done();
             }
-        }, 120000);
+        }, 360000);
     });
 }
 
