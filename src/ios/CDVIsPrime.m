@@ -1,30 +1,41 @@
 #import <Cordova/CDV.h>
 
+// type for block requiring a dictionary argument
 typedef void (^KASResultCallback)(NSDictionary*);
 
+// ----------------------------------------------------------------------------
+#pragma mark - KASIsPrimeOperation interface
+
 @interface KASIsPrimeOperation : NSOperation
+
 @property BOOL isPaused;
+
 @end
 
+// ----------------------------------------------------------------------------
+#pragma mark - KASIsPrimeOperation implementation
+
 @implementation KASIsPrimeOperation
+
 NSMutableDictionary* _result;
 KASResultCallback _progress;
 KASResultCallback _completion;
 @synthesize isPaused;
 
-- (id) initWithDictionary:(NSMutableDictionary *) dict progress:(KASResultCallback)progress completion:(KASResultCallback)completion {
+- (id) initWithDictionary:(NSMutableDictionary *) dict progress:(KASResultCallback)progress completion:(KASResultCallback)completion
+{
     self = [super init];
     if (self) {
         _result = dict;
         _progress = progress;
         _completion = completion;
         isPaused = false;
-        
+
         self.queuePriority = NSOperationQueuePriorityLow;
         self.qualityOfService = NSOperationQualityOfServiceUserInitiated;
     }
     return self;
-    
+
 }
 
 - (id) initWithCommand:(CDVInvokedUrlCommand*) command progress:(KASResultCallback)progress completion:(KASResultCallback)completion
@@ -33,7 +44,9 @@ KASResultCallback _completion;
     return [self initWithDictionary:result progress:progress completion:completion];
 }
 
-- (KASIsPrimeOperation *)createNewOperation {
+
+- (KASIsPrimeOperation *)createNewOperation
+{
     return [[KASIsPrimeOperation alloc] initWithDictionary:_result progress:_progress completion:_completion];
 }
 
@@ -44,7 +57,7 @@ KASResultCallback _completion;
     int64_t half = candidate / 2;
     NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
     NSTimeInterval cur = now;
-    
+
     if (self.isCancelled) {
         return;
     }
@@ -101,13 +114,19 @@ KASResultCallback _completion;
     if (!self.isCancelled) {
         _completion(result);
     }
-    
+
 }
 @end
 
+// ----------------------------------------------------------------------------
+#pragma mark - CDVIsPrime interface
 
 @interface CDVIsPrime : CDVPlugin
+- (void)isPrime:(CDVInvokedUrlCommand*)command;
 @end
+
+// ----------------------------------------------------------------------------
+#pragma mark - CDVIsPrime implementation
 
 @implementation CDVIsPrime
 
@@ -143,7 +162,7 @@ NSOperationQueue* _opq;
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
-    
+
     [_opq addOperation:op];
 }
 
