@@ -1,0 +1,10 @@
+sudo: false
+os:
+  - linux
+  - osx
+node_js:
+  - "6"
+script:
+  - npm install
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
+  - npm run test:android
