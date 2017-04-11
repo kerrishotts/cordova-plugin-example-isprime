@@ -2,9 +2,6 @@ sudo: false
 os:
   - linux
   - osx
-node_js:
-  - "4"
-  - "6"
 jdk: oraclejdk1.8
 language: android
 matrix:
@@ -18,12 +15,11 @@ android:
     - sys-img-armeabi-v7a-android-24
     - extra
 script:
+  - nvm install 6.10.2
   - nvm use 6.10.2
   - npm install -g cordova
   - npm install
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  - android list targets
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a && emulator -avd test -no-audio -no-window & && android-wait-for-emulator && adb shell input keyevent 82 &
   - npm run test:android
