@@ -2,20 +2,21 @@
   "name": "cordova-plugin-example-isprime",
   "description": "Checks if a number is prime, and if not, returns the corresponding factors. Used for PhoneGap Day EU 2017 'Creating Modern PhoneGap Plugins' workshop; not intended for production use (there are better ways to find primes!)",
   "version": "0.0.1",
-  "homepage": "https://github.com/kerrishotts/cordova-plugin-isprime",
+  "homepage": "https://github.com/kerrishotts/cordova-plugin-example-isprime",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kerrishotts/cordova-plugin-isprime.git"
+    "url": "https://github.com/kerrishotts/cordova-plugin-example-isprime.git"
   },
   "bugs": {
-    "url": "https://github.com/kerrishotts/cordova-plugin-isprime/issues"
+    "url": "https://github.com/kerrishotts/cordova-plugin-example-isprime/issues"
   },
   "cordova": {
-    "id": "cordova-plugin-isprime",
+    "id": "cordova-plugin-example-isprime",
     "platforms": [
       "ios",
       "android",
-      "windows"
+      "windows",
+      "browser"
     ]
   },
   "keywords": [

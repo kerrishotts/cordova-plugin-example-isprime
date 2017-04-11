@@ -11,8 +11,8 @@
         not intended for production use (there are better ways to find primes!)
     </description>
     <license>MIT</license>
-    <repo>https://github.com/kerrishotts/cordova-plugin-isprime.git</repo>
-    <issue>https://github.com/kerrishotts/cordova-plugin-isprime/issues</issue>
+    <repo>https://github.com/kerrishotts/cordova-plugin-example-isprime.git</repo>
+    <issue>https://github.com/kerrishotts/cordova-plugin-example-isprime/issues</issue>
     <keywords>
       prime, pgday, eu, 2017, example, cordova, phonegap, cordova:ecosystem, phonegap:ecosystem
     </keywords>
