@@ -8,12 +8,12 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8.2
-android:
-  components:
-    - build-tools-24.0.3
-    - android-24
-    - sys-img-armeabi-v7a-android-24
-    - extra
+#android:
+#  components:
+#    - build-tools-24.0.3
+#    - android-24
+#    - sys-img-armeabi-v7a-android-24
+#    - extra
 script:
   - nvm install 6.10.2
   - nvm use 6.10.2
@@ -21,5 +21,5 @@ script:
   - npm install
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
   - android list targets
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a && emulator -avd test -no-audio -no-window & && android-wait-for-emulator && adb shell input keyevent 82 &
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a && emulator -avd test -no-audio -no-window & && android-wait-for-emulator && adb shell input keyevent 82 &
   - npm run test:android
