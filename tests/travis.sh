@@ -2,8 +2,6 @@
 set -o nounset
 set -o errexit
 
-nvm install 6.10.2
-nvm use 6.10.2
 npm install -g cordova
 npm install
 

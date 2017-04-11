@@ -28,4 +28,6 @@ android:
 #  - echo y | android update sdk -u -a -t extra-google-m2repository
 #  - echo y | android update sdk -u -a -t extra-android-m2repository
 script:
+  - nvm install 6.10.2
+  - nvm use 6.10.2
   - /bin/bash tests/travis.sh
