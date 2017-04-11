@@ -4,8 +4,10 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8.2
+      language: objective-c
     - os: linux
       jdk: oraclejdk1.8
+      language: android
 android:
   components:
     - tools
@@ -26,15 +28,4 @@ android:
 #  - echo y | android update sdk -u -a -t extra-google-m2repository
 #  - echo y | android update sdk -u -a -t extra-android-m2repository
 script:
-  - nvm install 6.10.2
-  - nvm use 6.10.2
-  - npm install -g cordova
-  - npm install
-  - npm run lint
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run test:ios; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then android list targets; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then emulator -avd test -no-audio -no-window &; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then android-wait-for-emulator; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then adb shell input keyevent 82 &; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run test:android; fi
+  - /usr/bin/bash tests/travis.sh
