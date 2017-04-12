@@ -2,8 +2,7 @@ sudo: false
 language: android
 matrix:
   include:
-    - os: osx
-      osx_image: xcode8.3
+    - os: osx 
       language: objective-c
     - os: linux
       jdk: oraclejdk1.8
