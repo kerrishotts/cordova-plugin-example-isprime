@@ -10,6 +10,7 @@ npm run lint
 
 # run tests appropriate for platform
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    rvm use system
     npm run test:ios
 fi
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
