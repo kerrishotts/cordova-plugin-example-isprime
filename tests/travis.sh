@@ -20,6 +20,6 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     android-wait-for-emulator
     #adb shell input keyevent 82 &
     npm run test:android
-    ps -eaf
+    ps aux
     killall -9 qemu-system-x86_64
 fi
