@@ -21,5 +21,8 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     #adb shell input keyevent 82 &
     npm run test:android
     ps -eaf -ww
-    killall -9 qemu-system-x86_64
+    killall -9 emulator64-arm
+    killall -9 emulator64-crash-service
+    killall -9 adb
+    killall -9 java
 fi
