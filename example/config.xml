@@ -27,4 +27,5 @@
     <engine name="ios" spec="~4.3.1" />
     <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-example-isprime" spec=".." />
+    <engine name="windows" spec="latest" />
 </widget>
