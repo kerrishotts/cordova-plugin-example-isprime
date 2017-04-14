@@ -49,9 +49,9 @@ var app = {
                 progressEl.removeAttribute("disabled");
                 progressEl.setAttribute("value", "Is Prime?");
                 if (result.isPrime) {
-                    alert("" + candidate + " is prime.");
+                    navigator.notification.alert("" + candidate + " is prime.");
                 } else {
-                    alert("" + candidate + " is not prime; factors: " + result.factors.join(", "));
+                    navigator.notification.alert("" + candidate + " is not prime; factors: " + result.factors.join(", "));
                 }
             })
             .catch(function (err) {

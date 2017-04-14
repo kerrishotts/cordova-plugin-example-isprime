@@ -28,4 +28,7 @@
     <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-example-isprime" spec=".." />
     <engine name="windows" spec="latest" />
+    <plugin name="cordova-plugin-dialogs" spec="~1.3.2" />
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="windows-phone-target-version" value="10.0" />
 </widget>
