@@ -37,10 +37,11 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint **/*.js",
+    "cordova-paramedic": "cordova-paramedic",
     "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin .",
     "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin .",
     "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin .",
-    "test:windows": "cordova-paramedic --cleanUpAfterRun --verbose --platform windows --plugin ."
+    "test:windows": "cordova-paramedic --config .paramedic.windows.config.js"
   },
   "devDependencies": {
     "cordova-paramedic": "^0.5.0",
