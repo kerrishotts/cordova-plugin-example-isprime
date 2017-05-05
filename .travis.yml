@@ -2,7 +2,8 @@ sudo: false
 language: android
 matrix:
   include:
-    - os: osx 
+    - os: osx
+      osx_image: xcode8.3
       language: objective-c
     - os: linux
       jdk: oraclejdk1.8
@@ -22,5 +23,5 @@ android:
 script:
   - nvm install 6.10.2
   - nvm use 6.10.2
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm use system; fi 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm use system; fi
   - /bin/bash tests/travis.sh
