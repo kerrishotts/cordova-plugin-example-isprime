@@ -1,27 +1,18 @@
-function isPrimeBatch(result, startAt, batchSize, endAt) {
-    var stopAt = Math.min(startAt + batchSize - 1, endAt),
-        candidate = result.candidate;
-    if (candidate === 2) {
-        return;
-    }
-    for (var i = startAt; i <= stopAt; i++) {
-        if ((candidate % i) === 0) {
-            result.factors.push(i);
-        }
-    }
-    result.progress = ((i + 1) / endAt) * 100;
-    return i + 1;
-}
-
+/* global IsPrimeRuntimeComponent, require, module */
 function isPrime(successFn, failureFn, args) {
     var result = args[0],
         candidate = result.candidate,
         half = Math.floor(candidate / 2),
-        batchSize = 10000,
+        batchSize = 100000,
         cur = 2;
 
     setTimeout(function runBatch() {
-        cur = isPrimeBatch(result, cur, batchSize, half);
+        var results = IsPrimeRuntimeComponent.IsPrimeRT.batch(candidate, cur, batchSize, half);
+        cur = Math.min(half + 1, cur + batchSize);
+        if (results && results.length > 0) {
+            result.factors = result.factors.concat(Array.from(results));
+        }
+        result.progress = (cur / half) * 100;
         if (!cur || cur > half) {
             result.complete = true;
             result.progress = 100;
@@ -32,7 +23,7 @@ function isPrime(successFn, failureFn, args) {
             }
             successFn(result);
         } else {
-            successFn(result, {keepCallback: true});  // post progress
+            successFn(result, { keepCallback: true });  // post progress
             setTimeout(runBatch, 0);
         }
     }, 0);
