@@ -54,5 +54,6 @@
         <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
             <runs />
         </js-module>
+        <framework src="src/windows/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
     </platform>
 </plugin>
