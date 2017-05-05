@@ -8,7 +8,9 @@ Determines if a number is prime, and if not, returns the factors.
 
 Supported on iOS, Android, Windows, and browser platforms.
 
-> **Note:** iOS and Android gain the benefit of faster computations. In order for the browser and Windows apps to remain responsive, the computations are batched in smaller portions.
+> **Note:** iOS, Android, and Windows gain the benefit of faster computations. In order for the browser and Windows apps to remain responsive, the computations are batched in smaller portions.
+
+> **Windows:** When running on Windows 10, you'll need to specify the platform (e.g., `cordova run windows --archs=x64`)
 
 ## Installation
 
@@ -88,7 +90,7 @@ The following errors can be thrown (when using `Promises`, they are propagated t
 
 ## Important Notes
 
-* Calculations are processed in background threads on iOS and Android. These calculations **do not** stop if the webview is navigated. This is left as an excercise to the reader.
+* Calculations are processed in background threads on iOS and Android. These calculations **do not** stop if the webview is navigated. This is left as an exercise to the reader.
 * Calculations on Windows and the Browser platform are much slower in order to avoid blocking the webview. Be careful with the size of primes passed; you may end up with a computation that takes quite some time.
 
 ## Testing
