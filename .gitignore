@@ -292,4 +292,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-!src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/*.winmd
+# we want the winmd file!
+!src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd
