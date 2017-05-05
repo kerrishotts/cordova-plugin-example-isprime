@@ -1,0 +1,14 @@
+{
+  "name": "tests",
+  "version": "0.0.1",
+  "description": "tests for cordova-plugin-example-isprime",
+  "cordova": {
+    "id": "cordova-plugin-example-isprime-tests",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Kerri Shotts",
+  "license": "MIT"
+}
