@@ -4,3 +4,15 @@ tests/
 example/
 .vscode/
 npm-debug.log
+src/windows/IsPrimeRuntimeComponent/.vs
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/obj
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/Properties
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/isPrimeRT.cs
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/isPrimeRuntimeComponent.csproj
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent.sln
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/ARM
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Debug
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/x64
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/x86
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/*.pdb
+src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/*.pri
