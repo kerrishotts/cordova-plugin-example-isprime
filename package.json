@@ -44,7 +44,7 @@
     "test:windows": "cordova-paramedic --config .paramedic.windows.config.js"
   },
   "devDependencies": {
-    "cordova-paramedic": "^0.5.0",
+    "cordova-paramedic": "git+https://github.com/apache/cordova-paramedic.git",
     "eslint": "^3.18.0"
   }
 }
