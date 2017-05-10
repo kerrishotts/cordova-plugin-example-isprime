@@ -22,7 +22,7 @@ import android.annotation.SuppressLint;
 */
 public class IsPrime extends CordovaPlugin {
 
-    public static final int START_THREADS = 4;
+    public static final int START_THREADS = 0;
     public static final int MAX_THREADS = 8;
     public static final int KEEP_ALIVE = 1000;
 
