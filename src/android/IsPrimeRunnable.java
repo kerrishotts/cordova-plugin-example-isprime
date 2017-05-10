@@ -12,21 +12,21 @@ public class IsPrimeRunnable implements Runnable {
 
     private final JSONObject _result;
     private final CallbackContext _context;
-    private volatile long _lastCandidate = 0;
+    private volatile long _lastCandidateFactor = 0;
 
     public IsPrimeRunnable(final JSONObject result, final CallbackContext callbackContext) {
         _result = result;
         _context = callbackContext;
-        _lastCandidate = 2; // this is where we start checking -- not one or zero.
+        _lastCandidateFactor = 2; // this is where we start checking -- not one or zero.
     }
-    private IsPrimeRunnable(final JSONObject result, final CallbackContext callbackContext, long lastCandidate) {
+    private IsPrimeRunnable(final JSONObject result, final CallbackContext callbackContext, long lastCandidateFactor) {
         _result = result;
         _context = callbackContext;
-        _lastCandidate = lastCandidate; // start from last checked candidate
+        _lastCandidateFactor = lastCandidateFactor; // start from last checked candidate
     }
 
     public IsPrimeRunnable copy() {
-        return new IsPrimeRunnable(_result, _context, _lastCandidate);
+        return new IsPrimeRunnable(_result, _context, _lastCandidateFactor);
     }
 
     public void run() {
@@ -36,7 +36,7 @@ public class IsPrimeRunnable implements Runnable {
             long half = candidate / 2;
             long now = (new GregorianCalendar()).getTimeInMillis();
             long cur = now;
-            long start = _lastCandidate;
+            long start = _lastCandidateFactor;
 
             if (candidate == 2) {
                 _result.put("progress", 100);
@@ -69,7 +69,7 @@ public class IsPrimeRunnable implements Runnable {
                     if ((candidate % i) == 0) {
                         factors.put(i);
                     }
-                    _lastCandidate = i;
+                    _lastCandidateFactor = i;
                 }
                 if (factors.length() == 1) {
                     // no factors, so we're prime
