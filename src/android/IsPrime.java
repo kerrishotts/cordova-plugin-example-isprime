@@ -60,8 +60,7 @@ public class IsPrime extends CordovaPlugin {
     }
 
     @Override
-    public void initialize(org.apache.cordova.CordovaInterface cordova, org.apache.cordova.CordovaWebView webView) {
-        super.initialize(cordova, webView);
+    protected void pluginInitialize() {
         _initPool();
     }
 
