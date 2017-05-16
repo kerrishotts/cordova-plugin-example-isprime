@@ -16,7 +16,7 @@ Supported on iOS, Android, Windows, and browser platforms.
 
 To install, use one of two methods:
 
-* `cordova plugin add --save cordova-plugin-example-isprime`
+* `cordova plugin add [--save] cordova-plugin-example-isprime`
 * Add the following to your `config.xml`:
 
     ```xml
@@ -27,7 +27,7 @@ To install, use one of two methods:
 
 ## Usage
 
-You can use one of two methods to check if a number is prime:
+You can use one of two patterns to check if a number is prime:
 
 * Typical callback pattern
     ```javascript
@@ -91,7 +91,9 @@ The following errors can be thrown (when using `Promises`, they are propagated t
 ## Important Notes
 
 * Calculations are processed in background threads on iOS and Android. These calculations **do not** stop if the webview is navigated. This is left as an exercise to the reader.
-* Calculations on Windows and the Browser platform are much slower in order to avoid blocking the webview. Be careful with the size of primes passed; you may end up with a computation that takes quite some time.
+* Calculations on the Browser platform are much slower in order to avoid blocking the webview.
+* Be careful with the size of primes passed; you may end up with a computation that takes quite some time.
+* Do remember &mdash; this plugin can't check primality of any number greater than 2^53-1.
 
 ## Testing
 
@@ -104,7 +106,7 @@ $ npm run test:ios
 $ npm run test:windows
 ```
 
-> **Note:** You must have appropriate SDK installed in order to run the corresponding tests.
+> **Note:** You must have appropriate SDK installed in order to run the corresponding tests. If testing Windows apps, you must **NOT** be logged in as an administrator.
 
 ## License
 
