@@ -1,5 +1,4 @@
 sudo: false
-language: android
 matrix:
   include:
     - os: osx
