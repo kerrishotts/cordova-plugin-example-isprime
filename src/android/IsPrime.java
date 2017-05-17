@@ -23,7 +23,7 @@ public class IsPrime extends CordovaPlugin {
         } else {
             return false;
         }
-        return false;
+        return true;
     }
     private void isPrime(final JSONObject result, final CallbackContext callbackContext) throws JSONException {
         cordova.getThreadPool().execute(new Runnable() {
