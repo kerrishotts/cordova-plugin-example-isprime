@@ -29,8 +29,6 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/InspectableThreadPoolExecutor.java" target-dir="src/com/kerrishotts/example/isprime" />
-        <source-file src="src/android/IsPrimeRunnable.java" target-dir="src/com/kerrishotts/example/isprime" />
         <source-file src="src/android/IsPrime.java" target-dir="src/com/kerrishotts/example/isprime" />
     </platform>
 
@@ -56,6 +54,5 @@
         <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
             <runs />
         </js-module>
-        <framework src="src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
     </platform>
 </plugin>
