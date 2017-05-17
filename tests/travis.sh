@@ -8,10 +8,6 @@ npm install
 # lint
 npm run lint
 
-# browser
-
-npm run test:browser
-
 # run tests appropriate for platform
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     sudo gem install cocoapods
