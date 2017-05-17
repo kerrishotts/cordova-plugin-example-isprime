@@ -8,6 +8,10 @@ npm install
 # lint
 npm run lint
 
+# browser
+
+npm run test:browser
+
 # run tests appropriate for platform
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     sudo gem install cocoapods
@@ -20,9 +24,4 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     emulator -avd test -no-audio -no-window &
     android-wait-for-emulator
     npm run test:android
-    # Apparently no longer need to kill things in latest Travis
-    # killall -9 -q emulator64-arm
-    # killall -9 -q emulator64-crash-service
-    # killall -9 -q adb
-    # killall -9 -q java
 fi
