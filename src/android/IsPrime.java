@@ -1,18 +1,17 @@
 package com.kerrishotts.example.isprime;
 
-import java.util.ArrayList;
-import java.util.concurrent.BlockingQueue;
-import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.annotation.SuppressLint;
+import android.util.Base64;
 
 import android.annotation.SuppressLint;
 
