@@ -1,5 +1,8 @@
 # cordova-plugin-example-isprime
 
+
+
+
 Determines if a number is prime, and if not, returns the factors.
 
 > **IMPORTANT:** This plugin was developed for PhoneGap Day EU 2017's "Creating a Modern PhoneGap Plugin" workshop as an example. This is not intended for use in production applications! There are far better and faster ways to check candidate primes!
