@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-example-isprime",
   "description": "Checks if a number is prime, and if not, returns the corresponding factors. Used for PhoneGap Day EU 2017 'Creating Modern PhoneGap Plugins' workshop; not intended for production use (there are better ways to find primes!)",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/kerrishotts/cordova-plugin-example-isprime",
   "repository": {
     "type": "git",
